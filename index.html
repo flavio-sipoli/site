@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SipoliTech Analytics | Digital Analytics Expert</title>
+    <style>
+        /* Reset e Estilos Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #0f0f0f;
+            color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* Navegação */
+        nav {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f1f1f;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: ">";
+            font-size: 1.8rem;
+            color: #3b82f6;
+            -webkit-text-fill-color: #3b82f6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #f5f5f5;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Hero Section com efeito matriz */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 0.2; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #f5f5f5, #93c5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+        }
+
+        .tech-subtitle {
+            font-family: 'Consolas', monospace;
+            color: #3b82f6;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #a3a3a3;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #3b82f6, #60a5fa);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Blog Section com cards modernos */
+        .blog {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #f5f5f5;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-title::before {
+            content: '//';
+            color: #3b82f6;
+            font-family: 'Consolas', monospace;
+        }
+
+        .posts-grid {
+            display: grid;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #2a2a2a;
+            max-width: 400px;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #f5f5f5;
+        }
+
+        .post-excerpt {
+            color: #a3a3a3;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .read-more::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .tech-subtitle {
+                font-size: 1rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .post-card {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* Tech details */
+        .tech-details {
+            position: absolute;
+            font-family: 'Consolas', monospace;
+            color: rgba(59, 130, 246, 0.3);
+            font-size: 0.8rem;
+        }
+
+        .tech-details.top-left {
+            top: 20px;
+            left: 20px;
+        }
+
+        .tech-details.bottom-right {
+            bottom: 20px;
+            right: 20px;
+        }
+        .footer {
+            background: #1a1a1a;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a2a;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-link {
+            color: #f5f5f5;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            color: #3b82f6;
+            transform: translateY(-2px);
+        }
+
+        .linkedin-icon {
+            fill: currentColor;
+            width: 24px;
+            height: 24px;
+        }
+
+        .social-link span {
+            font-weight: 500;
+        }
+
+        .developer-credit {
+            color: #a3a3a3;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .about {
+            background: linear-gradient(to bottom, #0f0f0f, #1a1a1a);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 0%, rgba(59, 130, 246, 0.03) 100%);
+            top: 0;
+            left: 0;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .intro h2 {
+            font-size: 2.5rem;
+            color: #f5f5f5;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #f5f5f5, #93c5fd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .intro p {
+            color: #a3a3a3;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .experience-card {
+            background: rgba(26, 26, 26, 0.8);
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: #3b82f6;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+        }
+
+        .experience-card p {
+            color: #ffffff;  /* Mudando a cor do texto para branco */
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .company {
+            font-size: 1.25rem;
+            color: #3b82f6;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .period {
+            font-family: 'Consolas', monospace;
+            color: #a3a3a3;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .skills-container {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 12px;
+        }
+
+        .skills-title {
+            font-size: 1.5rem;
+            color: #f5f5f5;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            color: #f5f5f5;
+            text-align: center;
+            font-family: 'Consolas', monospace;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .developer-credit {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .developer-credit a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .developer-credit a:hover {
+            color: #93c5fd;
+        }
+
+        @media (max-width: 768px) {
+            .about {
+                padding: 4rem 1rem;
+            }
+
+            .intro h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegação -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">SipoliTech Analytics</div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="tech-details top-left">/* digital solutions */</div>
+        <div class="hero-content">
+            <div class="tech-subtitle">> analytics_expert.init()</div>
+            <h1>Digital Analytics Expert</h1>
+            <p>Especialista em Google Analytics, Google Tag Manager e Looker Studio</p>
+            <a href="https://wa.me/5511958342100?text=Ol%C3%A1,%20vamos%20conversar!">
+                <button class="cta-button">Fale Comigo</button>
+              </a>
+        </div>
+        <div class="tech-details bottom-right">/* data driven */</div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Experiencia Profissional</h2>
+        <div class="about-container">
+        <div class="experience-grid">
+            <div class="experience-card">
+                <div class="company">Rethink Tecnologia</div>
+                <div class="period">> 2024 - Atual</div>
+                <p>Digital & Web Analytics Senior</p>
+            </div>
+
+            <div class="experience-card">
+                <div class="company">MJV Technology & Innovation</div>
+                <div class="period">> 2024 (6 meses)</div>
+                <p>Digital Analytics & Web Analytics Specialist no Santander Auto Compara</p>
+            </div>
+
+            <div class="experience-card">
+                <div class="company">Cognizant</div>
+                <div class="period">> 2021 - 2024</div>
+                <p>Developer Analyst & Web Analytics Specialist, atuando em projetos do Google</p>
+            </div>
+        </div>
+
+        <div class="skills-container">
+            <h3 class="skills-title">Expertise Técnica</h3>
+            <div class="skills-grid">
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">GA4</div>
+                <div class="skill-item">GTM</div>
+                <div class="skill-item">BigQuery</div>
+                <div class="skill-item">Looker Studio</div>
+                <div class="skill-item">Data Layer</div>
+            </div>
+        </div>
+
+        <div class="developer-credit">
+            <a href="https://medium.com/@sipoliflavio" target="_blank">@blog-flaviosipoli</a>
+        </div>
+    </div>
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <h2 class="section-title">Últimas Publicações</h2>
+        <div class="posts-grid">
+            <!-- Single Post Card -->
+            <article class="post-card">
+                <svg class="post-image" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a1a"/>
+                            <stop offset="100%" style="stop-color:#2a2a2a"/>
+                        </linearGradient>
+                        <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6"/>
+                            <stop offset="100%" style="stop-color:#60a5fa"/>
+                        </linearGradient>
+                    </defs>
+                    
+                    <!-- Background -->
+                    <rect width="100%" height="100%" fill="url(#bgGrad)"/>
+                    
+                    <!-- Analytics Graph -->
+                    <polyline 
+                        points="50,150 100,100 150,120 200,80 250,90 300,60 350,30"
+                        stroke="url(#chartGrad)"
+                        stroke-width="3"
+                        fill="none"
+                    />
+                    
+                    <!-- Data Points -->
+                    <circle cx="50" cy="150" r="4" fill="#3b82f6"/>
+                    <circle cx="100" cy="100" r="4" fill="#3b82f6"/>
+                    <circle cx="150" cy="120" r="4" fill="#3b82f6"/>
+                    <circle cx="200" cy="80" r="4" fill="#3b82f6"/>
+                    <circle cx="250" cy="90" r="4" fill="#3b82f6"/>
+                    <circle cx="300" cy="60" r="4" fill="#3b82f6"/>
+                    <circle cx="350" cy="30" r="4" fill="#3b82f6"/>
+                    
+                    <!-- GA4 Icon -->
+                    <g transform="translate(320,140) scale(0.4)">
+                        <rect x="0" y="0" width="60" height="60" rx="10" fill="#3b82f6"/>
+                        <text x="30" y="40" fill="white" font-family="Arial" font-size="24" text-anchor="middle">GA4</text>
+                    </g>
+                </svg>
+                <div class="post-content">
+                    <h3 class="post-title">Novidades Digital Analytics</h3>
+                    <p class="post-excerpt">Confira as principais atualizações em Digital Analytics e como elas podem impactar suas análises de dados.</p>
+                    <a href="https://medium.com/@sipoliflavio" class="read-more">Ler mais</a>
+                </div>
+            </article>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="https://www.linkedin.com/in/flavio-sipoli/" target="_blank" rel="noopener noreferrer" class="social-link">
+                <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                <span>Conecte-se no LinkedIn</span>
+            </a>
+            <div class="developer-credit">Desenvolvido por Flávio Sipoli</div>
+        </div>
+    </footer>
+</body>
+</html>
